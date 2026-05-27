@@ -392,6 +392,7 @@ const Upload = (): React.JSX.Element => {
         setStatusText('Analysis complete, redirecting...');
 
         console.log(data);
+        navigate(`/resume/${uuid}`);
 
     }
 

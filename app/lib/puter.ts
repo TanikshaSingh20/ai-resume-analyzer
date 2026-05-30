@@ -903,7 +903,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
             setError("Puter.js not available");
             return;
         }
-        return puter.kv.delete(key);
+        return (puter.kv as any).del(key);
     };
 
     const listKV = async (pattern: string, returnValues?: boolean) => {
@@ -961,7 +961,7 @@ export const usePuterStore = create<PuterStore>((set, get) => {
         kv: {
             get: (key: string) => getKV(key),
             set: (key: string, value: string) => setKV(key, value),
-            delete: (key: string) => deleteKV(key),
+            "delete": (key: string) => deleteKV(key),
             list: (pattern: string, returnValues?: boolean) =>
                 listKV(pattern, returnValues),
             flush: () => flushKV(),

@@ -675,7 +675,8 @@ const Upload = (): React.JSX.Element => {
                 ? feedback.message.content
                 : feedback.message.content[0].text;
 
-        data.feedback = JSON.parse(feedbackText);
+        const cleanJson = feedbackText.replace(/```json|```/g, "").trim();
+        data.feedback = JSON.parse(cleanJson);
         await kv.set(`resume-${uuid}`, JSON.stringify(data));
 
         setCurrentStep(6);
